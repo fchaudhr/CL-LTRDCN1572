@@ -96,7 +96,7 @@
         
             <li><a class="toctree-l3" href="#step-2-install-ansible-pre-reqs">Step 2: Install Ansible pre-reqs</a></li>
         
-            <li><a class="toctree-l3" href="#step-3-check-curl">Step 3: Check curl</a></li>
+            <li><a class="toctree-l3" href="#step-3-check-virtual-ip-using-curl">Step 3: Check Virtual IP using curl</a></li>
         
             <li><a class="toctree-l3" href="#step-4">Step 4:</a></li>
         
@@ -163,14 +163,14 @@
 <p><img alt="" src="../pic/a-1-1.png" /></p>
 </li>
 <li>
-<p>Open up the VM under host <strong>198.18.133.33</strong>, and power on VM <strong>F5_LTM</strong> as shown below:</p>
+<p>Open up the VM under host <strong>198.18.133.33</strong>, and power on VM named <strong>F5_LTM</strong> as shown below:</p>
 <p><img alt="" src="../pic/a-1-2.png" /></p>
 </li>
 </ul>
 <hr />
 <h3 id="step-2-install-ansible-pre-reqs">Step 2: Install Ansible pre-reqs</h3>
 <ul>
-<li>Switch to <strong>MTPuTTY</strong> install prerequisites packages on <strong>Ansible node</strong> by using below <code>pip install</code> commands:<pre><code>[root@rhel7-tools LTRDCN-1572]# pip install f5-sdk
+<li>Switch to <strong>MTPuTTY</strong> install prerequisites packages on <strong>Ansible node</strong> by using below <code>pip install</code> commands (<strong>Note</strong>: the bold commands need to be executed):<pre><code>[root@rhel7-tools LTRDCN-1572]# pip install f5-sdk
 [root@rhel7-tools LTRDCN-1572]# pip install setuptools --upgrade
 [root@rhel7-tools LTRDCN-1572]# pip install bigsuds
 [root@rhel7-tools LTRDCN-1572]# pip install netaddr
@@ -178,9 +178,9 @@
 </li>
 </ul>
 <hr />
-<h3 id="step-3-check-curl">Step 3: Check curl</h3>
+<h3 id="step-3-check-virtual-ip-using-curl">Step 3: Check Virtual IP using curl</h3>
 <ul>
-<li>Switch to <strong>‘MTPuTTY’</strong> ssh into server-4 and send http request to VIP 172.21.140.100 from server-4 using <strong>curl</strong> commands as shown below:<pre><code>[root@server-4 ~]# curl http://172.21.140.100
+<li>Switch to <strong>‘MTPuTTY’</strong> and ssh into server-4.  Then send http request to Virtual IP (VIP) 172.21.140.100 from server-4 using <code>curl http://172.21.140.100</code> command.  As shown below HTTP request to VIP should fail:<pre><code>[root@server-4 ~]# curl http://172.21.140.100
 curl: (7) couldn't connect to host`
 [root@server-4 ~]#
 </code></pre>
@@ -195,6 +195,12 @@ curl: (7) couldn't connect to host`
 - name: Configurating BIG-IP
   hosts: localhost
   gather_facts: false
+  vars:
+    provider:
+      password: admin
+      server: 198.18.4.10
+      user: admin
+      validate_certs: False
 
   tasks:
   - name: Configure server facing port to L2
@@ -216,88 +222,60 @@ curl: (7) couldn't connect to host`
       host: &quot;198.18.4.104&quot;
   - name: Configure VLANs on the BIG-IP
     bigip_vlan:
-     server: &quot;198.18.4.10&quot;
-     user: &quot;admin&quot;
-     password: &quot;admin&quot;
-     validate_certs: False
-     name: &quot;External&quot;
-     tag: &quot;140&quot;
-     untagged_interface: &quot;1.1&quot;
-     validate_certs: &quot;no&quot;
-    delegate_to: localhost
+      name: &quot;External&quot;
+      tag: &quot;140&quot;
+      untagged_interface: &quot;1.1&quot;
+      provider: &quot;{{ provider }}&quot;
   - name: Configure SELF-IPs on the BIG-IP
     bigip_selfip:
-     server: &quot;198.18.4.10&quot;
-     user: &quot;admin&quot;
-     password: &quot;admin&quot;
-     validate_certs: False
      name: &quot;172.21.140.50&quot;
      address: &quot;172.21.140.50&quot;
      netmask: &quot;255.255.255.0&quot;
      vlan: &quot;External&quot;
      allow_service: &quot;default&quot;
-     validate_certs: &quot;no&quot;
-    delegate_to: localhost
+     provider: &quot;{{ provider }}&quot;
   - name: Create static route
     bigip_static_route:
-      server: &quot;198.18.4.10&quot;
-      user: &quot;admin&quot;
-      password: &quot;admin&quot;
-      validate_certs: False
-      destination: 0.0.0.0
-      netmask: 0.0.0.0
-      gateway_address: 172.21.140.1
-      name: &quot;defult&quot;
-    delegate_to: localhost
+     provider: &quot;{{ provider }}&quot;
+     destination: 0.0.0.0
+     netmask: 0.0.0.0
+     gateway_address: 172.21.140.1
+     name: &quot;defult&quot;
   - name: Create nodes
     bigip_node:
-      server: &quot;198.18.4.10&quot;
-      user: &quot;admin&quot;
-      password: &quot;admin&quot;
+      provider: &quot;{{ provider }}&quot;
       host: &quot;{{item}}&quot;
       name: &quot;{{item}}&quot;
-      validate_certs: &quot;no&quot;
     with_items:
       - 172.21.140.10
       - 172.21.140.11
       - 172.21.141.10
       - 172.21.141.11
-    delegate_to: localhost
 
   - name: Create pool
     bigip_pool:
-      server: &quot;198.18.4.10&quot;
-      user: &quot;admin&quot;
-      password: &quot;admin&quot;
+      provider: &quot;{{ provider }}&quot;
       name: &quot;web-pool&quot;
       lb_method: &quot;round-robin&quot;
       monitors: &quot;/Common/http&quot;
       monitor_type: &quot;and_list&quot;
-      validate_certs: &quot;no&quot;
-    delegate_to: localhost
 
   - name: Add Pool members
     bigip_pool_member:
-      server: &quot;198.18.4.10&quot;
-      user: &quot;admin&quot;
-      password: &quot;admin&quot;
+      provider: &quot;{{ provider }}&quot;
       name: &quot;{{item}}&quot;
       host: &quot;{{item}}&quot;
       port: &quot;80&quot;
       pool: &quot;web-pool&quot;
-      validate_certs: &quot;no&quot;
     with_items:
       - 172.21.140.10
       - 172.21.140.11
       - 172.21.141.10
       - 172.21.141.11
-    delegate_to: localhost
 
   - name: Add Virtual Server
     bigip_virtual_server:
-      server: &quot;198.18.4.10&quot;
-      user: &quot;admin&quot;
-      password: &quot;admin&quot;
+      provider: &quot;{{ provider }}&quot;
       name: &quot;http-virtualserver&quot;
       destination: &quot;172.21.140.100&quot;
       port: &quot;80&quot;
@@ -306,20 +284,27 @@ curl: (7) couldn't connect to host`
       - http
       pool: &quot;web-pool&quot;
       snat: &quot;Automap&quot;
-      validate_certs: &quot;no&quot;
-    delegate_to: localhost
+
 </code></pre>
 
 <hr />
 <h3 id="step-5-run-playbook">Step 5: Run playbook</h3>
 <ul>
-<li>On the <strong>Ansible node</strong> (using MTputty SSH), run playbook <strong>f5ltm.yml</strong> to provision VIP (172.21.140.100) on F5 and also put all four servers into the server pool using <code>ansible-playbook f5ltm.yml</code>: </li>
+<li>
+<p>On the <strong>Ansible node</strong> (using MTputty SSH), run playbook <strong>f5ltm.yml</strong> to provision VIP (172.21.140.100) on F5 and also put all four servers into the server pool using <code>ansible-playbook f5ltm.yml</code> command.  </p>
+</li>
+<li>
+<p>Below shows the output of above command: </p>
+</li>
 </ul>
 <p><img alt="" src="../pic/a-5-1.png" /> </p>
 <hr />
 <h3 id="step-6-check-load-balancer">Step 6: Check load balancer</h3>
 <ul>
-<li>Switch to <strong>‘MTPuTTY’</strong> and login server-4, and run <code>curl http://172.21.140.100</code> command multiple times, you will see the request is load balanced to differernt servers in the sever pool. </li>
+<li>Switch to <strong>‘MTPuTTY’</strong> and login server-4,</li>
+<li>Run <code>curl http://172.21.140.100</code> command multiple times, </li>
+<li>you will see the request is load balanced to differernt servers in the sever pool. </li>
+<li>Below shows the execution and output of above command (when its run multiple times): </li>
 </ul>
 <pre><code>[root@server-4 ~]# curl http://172.21.140.100
 &lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h1&gt;
@@ -342,6 +327,8 @@ curl: (7) couldn't connect to host`
 &lt;p&gt;The web server software is running but no content has been added, yet.&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;
 </code></pre>
+
+<p><strong>This concludes Appendix A using ansible for F5 (as load balancer).  Well done!</strong></p>
               
             </div>
           </div>
