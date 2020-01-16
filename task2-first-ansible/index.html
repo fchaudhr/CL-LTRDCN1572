@@ -162,8 +162,11 @@
 <p><img alt="" src="../pic/2-1-atom.png" /></p>
 </li>
 <li>
-<p>After opening ATOM, <strong>Click</strong> <code>No, Never</code> to the “Register as default atom:// URI handlre” message as show below:</p>
+<p>After opening ATOM, <strong>Click</strong> <code>No, Never</code> to the <strong><em>“Register as default atom:// URI handler”</em></strong> message as show below:</p>
 <p><img alt="" src="../pic/2-1-2-atom.png" /></p>
+</li>
+<li>
+<p>As an optional step: on ATOM you may close the Welcome, Welcome Guide, Telemetry Consent tabs. </p>
 </li>
 </ul>
 <hr />
@@ -180,6 +183,7 @@
 </li>
 <li>
 <p>Also, on the lower bar of the ATOM, verify that  file grammar of <strong>YAML</strong> is selected instead of default "<strong>Plain Text</strong>".  If <strong>YAML</strong> is not selected, then you should <strong>choose</strong> it from the listed options.</p>
+<p><img alt="" src="../pic/2-2-3-atom-yaml.png" /></p>
 </li>
 </ul>
 <hr />
@@ -202,23 +206,15 @@
         host: &quot;{{ inventory_hostname }}&quot;
 </code></pre>
 
-<p>Note:</p>
-<ul>
-<li>“<strong>hosts:</strong>” defines the scope of this playbook applies to all switches in group ‘leaf’ and ‘jinja2_leaf’ (within the <strong><em>"hosts"</em></strong> file created in pervious task). <ul>
-<li><strong>Note</strong> that you can review the IP addresses of the three (2) “leaf” and one (1) “jinja2_leaf” in the “<strong><em>hosts</em></strong>” file (configured in previous steps).  The IP addresses are:<ul>
-<li>jinja2_leaf: 198.18.4.104</li>
-<li>leaf: 198.18.4.101</li>
-<li>leaf: 198.18.4.103</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>“<strong>vars</strong>” defines one variable “<strong>nxos_provider</strong>” that will be used in this playbook. </li>
-<li>“<strong>nxos_provider</strong>” is variable that includes all value that will be used for connection and autnentication. <ul>
-<li>This variable will be referenced in playbook via “<strong>provider</strong>” argument (that will be added in next step #4).    </li>
-</ul>
-</li>
-</ul>
+<p>Note:
+*  “<strong>hosts:</strong>” defines the scope of this playbook applies to all switches in group ‘leaf’ and ‘jinja2_leaf’ (within the <strong><em>"hosts"</em></strong> file created in pervious task). 
+    *  <strong>Note</strong> that you can review the IP addresses of the three (2) “leaf” and one (1) “jinja2_leaf” in the “<strong><em>hosts</em></strong>” file (configured in previous steps).  The IP addresses are:
+        *  jinja2_leaf: 198.18.4.104
+        *  leaf: 198.18.4.101
+        *  leaf: 198.18.4.103
+* “<strong>vars</strong>” defines one variable “<strong>nxos_provider</strong>” that will be used in this playbook. 
+* “<strong>nxos_provider</strong>” is variable that includes all value that will be used for connection and autnentication. 
+    * This variable will be referenced in playbook via “<strong>provider</strong>” argument (that will be added in next step #4).    </p>
 <hr />
 <h3 id="step-4-vlan-tasks-in-playbook">Step 4: VLAN tasks in playbook</h3>
 <ul>
@@ -262,19 +258,14 @@
 </ul>
 <hr />
 <h3 id="step-5-execute-playbook">Step 5: Execute playbook</h3>
-<p>After creating the playbook, it is now time to execute the playbook. </p>
+<p>After creating the playbook, it is now time to execute the playbook. 
+*  Before executing the playbook, we will verify the leaf switch if it has any vlan configuration present on it.
+*  <strong>Login</strong> to leaf-3 switch using the Mputty client, or any leaf switch in previous playbook (remember <strong>hosts:</strong> variable in the file), and execute <code>show vlan brief</code> command. 
+    *  This command will show the vlans that currently exist on the leaf switch.  As you note from below screenshot, only the default VLAN (vlan number 1) is configured:</p>
+<pre><code>![](pic/2-5-1.png)
+</code></pre>
 <ul>
-<li>Before executing the playbook, we will verify the leaf switch if it has any vlan configuration present on it.</li>
-<li>
-<p><strong>Login</strong> to leaf-3 switch using the Mputty client, or any leaf switch in previous playbook (remember <strong>hosts:</strong> variable in the file), and execute <code>show vlan brief</code> command. </p>
-<ul>
-<li>This command will show the vlans that currently exist on the leaf switch.  As you note from below screenshot, only the default VLAN (vlan number 1) is configured:</li>
-</ul>
-<p><img alt="" src="../pic/2-5-1.png" /></p>
-</li>
-<li>
-<p>Now, go to mputty, login or launch a new ssh into Ansible node (198.18.134.150) </p>
-</li>
+<li>Now, go to mputty, login or launch a new ssh into Ansible node (198.18.134.150) </li>
 <li>
 <p>Use command <code>ansible-playbook vlan_provision.yml --tags "add vlans"</code> under folder "LTRDCN-1572" as shown below:</p>
 <pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook vlan_provision.yml --tags "add vlans"
@@ -345,9 +336,8 @@
 <p>On MTPuttY, log back into (or launch a new ssh) into “Ansible” node</p>
 </li>
 <li>
-<p>Execute command <code>ansible-playbook vlan_provision.yml</code> in the “LTRDCN-1572” directory as shown below:</p>
-<pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook vlan_provision.yml
-</code></pre>
+<p>Execute command <code>ansible-playbook vlan_provision.yml</code> in the “LTRDCN-1572” directory as shown below:
+        [root@rhel7-tools LTRDCN-1572]# ansible-playbook vlan_provision.yml</p>
 <p><img alt="" src="../pic/2-7-1.png" /></p>
 </li>
 <li>
