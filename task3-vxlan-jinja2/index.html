@@ -173,13 +173,13 @@
 <hr />
 <h3 id="step-1-install-jinja2">Step 1: Install jinja2</h3>
 <ul>
-<li>On the Ansible node, install jinja2 using <code>pip install jinja2</code> command.  If it is already installed, we will get the message “requirement is satisfied”:<pre><code>[root@rhel7-tools ~]# pip install jinja2
-Requirement already satisfied (use --upgrade to upgrade): jinja2 in /usr/lib/python2.7/site-packages/Jinja2-2.8-py2.7.egg
-Requirement already satisfied (use --upgrade to upgrade): MarkupSafe in /usr/lib/python2.7/site-packages/MarkupSafe-0.23-py2.7.egg (from jinja2)
-</code></pre>
-</li>
+<li>On the Ansible node, install jinja2 using <code>pip install jinja2</code> command.  If it is already installed, we will get the message “requirement is satisfied”:</li>
 </ul>
-<p><img alt="" src="../pic/3-1-1.png" /></p>
+<pre><code>        [root@rhel7-tools ~]# pip install jinja2
+</code></pre>
+
+<p>Below screenshot shows the output of above command:</p>
+<p><img alt="" src="../pic/3-1-1-new.png" /></p>
 <hr />
 <h3 id="step-2-playbook-for-jinja2-spine">Step 2: Playbook for jinja2 Spine</h3>
 <p>In this section, we will use Jina2 template and Ansible to provision the VXLAN Fabric. </p>
@@ -189,7 +189,7 @@ Requirement already satisfied (use --upgrade to upgrade): MarkupSafe in /usr/lib
 <p><img alt="" src="../pic/3-2-1.png" /></p>
 </li>
 <li>
-<p>Name the new file <code>jinja2_fabric.yml</code> and hit enter. It will create this new file:</p>
+<p>Name the new file <code>jinja2_fabric.yml</code> and hit enter as shown below. It will create this new file:</p>
 </li>
 </ul>
 <p><img alt="" src="../pic/3-2-1a.png" /></p>
@@ -215,15 +215,17 @@ Requirement already satisfied (use --upgrade to upgrade): MarkupSafe in /usr/lib
 <p><img alt="" src="../pic/3-2-2.png" /></p>
 </li>
 <li>
-<p><strong>Click</strong> <code>File</code> and <code>Save</code> . This will save the playbook, and also ftp the playbook to Ansible server using pre-configured “<strong>remote-sync</strong>” package. </p>
+<p><strong>Click</strong> <code>File</code> and <code>Save</code> . This will save the playbook, and also ftp the playbook to Ansible server using pre-configured “<strong>remote-sync</strong>” package</p>
 </li>
 <li>
 <p>On the MTputty, go back to the <strong>ssh</strong> session to Ansible Server node (198.18.134.150). </p>
 </li>
-<li><strong>Verify</strong> that the below 2 groups exists of <em>jinja2_spine</em> and <em>jinja2_leaf</em> in the inventory filename "<strong>hosts</strong>" under the LTRDCN-1572 directory by issuing below command:</li>
+<li>
+<p>On Ansible server node (198.18.134.150), <strong>verify</strong> that the (below highlighted) 2 groups exists of <em>jinja2_spine</em> and <em>jinja2_leaf</em> in the inventory file named "<strong>hosts</strong>" (under LTRDCN-1572 directory) exists by issuing below commands:</p>
+</li>
 </ul>
-<pre><code>cd /root/LTRDCN-1572
-more hosts
+<pre><code>[root@rhel7-tools ~]# cd /root/LTRDCN-1572
+[root@rhel7-tools ~]# more hosts
 </code></pre>
 
 <p>Below screenshot confirms the ouptut and appropriate IP addresses of above command:</p>
