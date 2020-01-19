@@ -574,7 +574,7 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 </ul>
 <h5 id="edit-variable-file-for-spine-role">Edit variable file for Spine role</h5>
 <ul>
-<li>Use <strong>“Atom”</strong> to edit the main.yml file. Open up the project folder <strong>“LTRDCN-1572”</strong> and open main.yml file under <strong>“roles/spine/vars/”</strong></li>
+<li>Use <strong>“Atom”</strong> to edit the variables file for Spine i.e. <strong>“main.yml”</strong> file. Open up the project folder <strong>“LTRDCN-1572”</strong> and add the below content at the end of <strong>“main.yml”</strong> file under <strong>“roles/spine/vars/”</strong></li>
 </ul>
 <pre><code class="YAML">  L3_interfaces:
   - { interface: Ethernet1/1 }
@@ -592,7 +592,7 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 </ul>
 <h5 id="edit-playbook-for-leaf-role">Edit playbook for leaf role</h5>
 <ul>
-<li>use <strong>“Atom”</strong> to edit the main.yml file. Open up the project folder <strong>“LTRDCN-1572”</strong> and open main.yml file under <strong>“roles/leaf/tasks/”</strong>.   On Atom, Make sure to click <strong>File-&gt;Save</strong> after entering the below data in this file so it is pushed to Ansible server:</li>
+<li>use <strong>“Atom”</strong> to edit the <strong>“main.yml”</strong> file. Open up the project folder <strong>“LTRDCN-1572”</strong> and add below content at the end of <strong>“main.yml”</strong> file under <strong>“roles/leaf/tasks/”</strong>.   On Atom, Make sure to click <strong>File-&gt;Save</strong> after entering the below data in this file so it is pushed to Ansible server:</li>
 </ul>
 <hr />
 <p><font style=background-color:yellow>Note: It is recommended to write your playbook and learn from mistakes, but file is also available in the box folder if you prefer to reuse.</font> </p>
@@ -623,7 +623,7 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 </ul>
 <h5 id="edit-variable-file-for-leaf-role">Edit variable file for leaf role</h5>
 <ul>
-<li>Use <strong>“Atom”</strong> to edit the main.yml file. Open up the project folder <strong>“LTRDCN-1572”</strong> and open main.yml file under <strong>“roles/leaf/vars/”</strong>.  On Atom, Make sure to click <strong>File-&gt;Save</strong> after entering the below data in this file so it is pushed to Ansible server:</li>
+<li>Use <strong>“Atom”</strong> to edit the main.yml file. Open up the project folder <strong>“LTRDCN-1572”</strong> and add below content at the end of <strong>“main.yml”</strong> file under <strong>“roles/leaf/vars/”</strong>.  On Atom, Make sure to click <strong>File-&gt;Save</strong> after entering the below data in this file so it is pushed to Ansible server:</li>
 </ul>
 <pre><code class="YAML">  rp_address: 192.168.0.100
   L3_interfaces:
