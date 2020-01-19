@@ -359,15 +359,17 @@
 </code></pre>
 
 <p>Below screeenshot shows the execution of above command:</p>
-<p><img alt="" src="../pic/2-7-1.png" /></p>
+<p><img alt="" src="../pic/2-7-1-new.png" /></p>
 <ul>
 <li>After we push the configuration, <strong>login</strong> to the <strong>leaf-3</strong> switch, and check if the server facing port has the access vlan configured with the below command:</li>
 </ul>
 <pre><code>show run interface ethernet1/3
 </code></pre>
 
-<p>The output of above command is shown in below screenshot:</p>
+<p>The output of above command on leaf-3 or leaf-1 is shown in below screenshot:</p>
 <p><img alt="" src="../pic/2-7-2.png" /></p>
+<p>The output of above command on leaf-4 is shown in below screenshot:</p>
+<p><img alt="" src="../pic/2-7-3.png" /></p>
 <hr />
 <p><strong>Congratulation! You have created your first ansible playbook, automatically provisioned new VLANs and assigned port to new created VLANs using Ansible. Next we are going to create VXLAN Fabric using Ansible. 
 </strong></p>
