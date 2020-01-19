@@ -358,8 +358,7 @@
 <pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook vlan_provision.yml
 </code></pre>
 
-<pre><code>Below screeenshot shows the execution of above command:
-</code></pre>
+<p>Below screeenshot shows the execution of above command:</p>
 <p><img alt="" src="../pic/2-7-1.png" /></p>
 <ul>
 <li>After we push the configuration, <strong>login</strong> to the <strong>leaf-3</strong> switch, and check if the server facing port has the access vlan configured with the below command:</li>
@@ -367,10 +366,8 @@
 <pre><code>show run interface ethernet1/3
 </code></pre>
 
-<pre><code>The output of above command is shown in below screenshot:
-
-![](pic/2-7-2.png)
-</code></pre>
+<p>The output of above command is shown in below screenshot:</p>
+<p><img alt="" src="../pic/2-7-2.png" /></p>
 <hr />
 <p><strong>Congratulation! You have created your first ansible playbook, automatically provisioned new VLANs and assigned port to new created VLANs using Ansible. Next we are going to create VXLAN Fabric using Ansible. 
 </strong></p>
