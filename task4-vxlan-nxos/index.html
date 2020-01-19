@@ -704,11 +704,8 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 </table>
 <h5 id="edit-playbook-for-spine-role_1">Edit playbook for spine role</h5>
 <ul>
-<li>Use <strong>“Atom”</strong> to edit the “main.yml” file. Open up the project folder <strong>“LTRDCN-1572”</strong> and open “main.yml” file under <strong>“roles/spine/tasks/”</strong>.   </li>
+<li>Use <strong>“Atom”</strong> to edit the “<strong>main.yml</strong>” file. Open up the project folder <strong>“LTRDCN-1572”</strong> and open “<strong>main.yml</strong>” file under <strong>“roles/spine/tasks/”</strong> and enter the below content (you may copy &amp; paste with correct spaces) at the end of the file:</li>
 </ul>
-<hr />
-<p><font style=background-color:yellow>Note: It is recommended to write your playbook and learn from mistakes, but file is also available in the box folder if you prefer to reuse.<font> </p>
-<hr />
 <pre><code class="YAML">#task to configure vxlan fabric
        - name: Enable VXLAN Feature
          nxos_feature:
@@ -733,11 +730,8 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 <p>No new variable required for Spine </p>
 <h5 id="edit-playbook-for-leaf-role_1">Edit playbook for leaf role</h5>
 <ul>
-<li>use <strong>“Atom”</strong> to edit the main.yml file. Open up the project folder <strong>“LTRDCN-1572”</strong> and open “main.yml” file under <strong>“roles/leaf/tasks/”</strong>.  Add the below content in the file in addition to existing content, and then make sure to click <strong>“File”-&gt;“Save”</strong> on Atom, so that the updated file is pushed to Ansible server.</li>
+<li>use <strong>“Atom”</strong> to edit the <strong>main.yml</strong> file. Open up the project folder <strong>“LTRDCN-1572”</strong> and open “<strong>main.yml</strong>” file under <strong>“roles/leaf/tasks/”</strong>.  Add the below content in the file at the end of the file (i.e., in addition to existing content), and then make sure to click <strong>“File”-&gt;“Save”</strong> on Atom, so that the updated file is pushed to Ansible server.</li>
 </ul>
-<hr />
-<p><font style=background-color:yellow>Note: It is recommended to write your playbook and learn from mistakes, but file is also available in the box folder if you prefer to reuse.</font> </p>
-<hr />
 <pre><code class="YAML">#task to configure VXLAN fabric
        - name: Enable VXLAN Feature
          nxos_feature:
@@ -853,7 +847,7 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 </ul>
 <h5 id="edit-variable-file-for-leaf-role_1">Edit variable file for leaf role</h5>
 <ul>
-<li>Use <strong>“Atom”</strong> to edit the main.yml file. Open up the project folder <strong>“LTRDCN-1572”</strong> and open main.yml file under <strong>“roles/leaf/vars/”</strong>.  Add the below content in the file in addition to existing content, and then make sure to click <strong>“File”-&gt;“Save”</strong> on Atom, so that the updated file is pushed to Ansible server.</li>
+<li>Use <strong>“Atom”</strong> to edit the <strong>main.yml</strong> file. Open up the project folder <strong>“LTRDCN-1572”</strong> and open "<strong>main.yml</strong>"" file under <strong>“roles/leaf/vars/”</strong>.  Add the below content in the file at the end of the file (i.e., in addition to existing content), and then make sure to click <strong>“File”-&gt;“Save”</strong> on Atom, so that the updated file is pushed to Ansible server.</li>
 </ul>
 <pre><code class="YAML">  L2VNI:
   - { vlan_id: 140, vni: 50140, ip_add: 172.21.140.1, mask: 24, vlan_name: L2-VNI-140-Tenant1, mcast: 239.0.0.140 }
@@ -867,21 +861,27 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 </ul>
 <h5 id="run-the-playbook-and-verify-configuration-changes_1">Run the playbook and verify configuration changes</h5>
 <ul>
-<li>
-<p>On Ansible node (via SSH connection on MTputty), run the below command:</p>
-<pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook nxos_fabric.yml --tags "vxlan"
+<li>On Ansible server (via SSH connection on MTputty), run the below command:</li>
+</ul>
+<pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook nxos_fabric.yml --tags &quot;vxlan&quot;
 </code></pre>
-</li>
+
+<ul>
 <li>
-<p>Below is a partial screenshot for the output of above command:</p>
+<p>Below screenshot show partial output of above command:</p>
 <p><img alt="" src="../pic/4-5-1.png" /></p>
 </li>
 <li>
-<p>After finishing this task: <strong>login</strong> to any leaf switch (on MTPutty) to verify VXLAN configuration and the VNI by issuing the command:  <code>show nve vni</code></p>
-<p>Below screenshot shows the output of above command from Leaf-4:</p>
-<p><img alt="" src="../pic/4-5-2.png" /> </p>
+<p>After finishing this task: <strong>login</strong> to any <strong>leaf</strong> switch (on MTPutty) to verify VXLAN configuration and the VNI by issuing the command:  </p>
 </li>
 </ul>
+<pre><code>show nve vni
+</code></pre>
+
+<pre><code>Below screenshot shows the output of above command from Leaf-3:
+
+![](pic/4-5-2.png)
+</code></pre>
 <hr />
 <h3 id="step-10-configure-evpn-using-ansible">Step 10: Configure EVPN using Ansible</h3>
 <p>In this section, we will be configuring BGP EVPN on leaf and spine switches. The NXOS modules we will be using in this section are </p>
