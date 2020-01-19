@@ -273,6 +273,9 @@
 </li>
 </ul>
 <p><img alt="" src="../pic/3-3-3.png" /></p>
+<ul>
+<li>Once the download is done you should see the new folder &amp; files (<code>roles</code>) appear on ATOM as well.</li>
+</ul>
 <hr />
 <h3 id="step-4-create-variable-file-for-jina2_spine-role">Step 4: Create variable file for “jina2_spine” role</h3>
 <p>“<strong>ansible-galaxy</strong>” automatically creates empty “<strong>main.yml</strong>” file under “<strong>vars</strong>” folder. We can use “<strong>Atom</strong>” to edit the main.yml file to include the following variables that will be used in jinja2 template. </p>
@@ -282,7 +285,7 @@
 <p><img alt="" src="../pic/3-4-1.png" /></p>
 </li>
 <li>
-<p>use “<strong>Atom</strong>” to edit the “<strong>main.yml</strong>” file to include the following variables that will be used in jinja2 template. </p>
+<p>use “<strong>Atom</strong>” to edit the “<strong>main.yml</strong>” file to include the following variables that will be used in jinja2 template.  You can copy and paste all of the below content into main.yml file.  Note: as per steps in previous tasks, be careful with YAML content since its space sensitive.</p>
 </li>
 </ul>
 <pre><code class="YAML">---
@@ -328,11 +331,12 @@
 <ul>
 <li>On <strong>ATOM</strong> open up the project folder <code>LTRDCN-1572</code> from the left pane and <strong>open</strong> <code>spine.j2</code> file under “<strong>roles/jinja2_spine/templates</strong>” as shown below:</li>
 </ul>
-<p><strong>NOTE: if the file does not appear on the ATOM, then go ahead and execute below 4 steps to get it sync.  If the <code>spine.j2</code> file appears in above folder then you can skip below 4 steps</strong>:</p>
+<p><img alt="" src="../pic/3-5-0.png" /></p>
+<p><strong>NOTE: If the file does not appear on the ATOM, then go ahead and execute below 4 steps to get it sync.  If the <code>spine.j2</code> file appears in above folder then you can skip below 4 steps</strong>:</p>
 <ol>
 <li>
-<p>Change Directory to folder LTRDCN-1572 on Ansible server (198.18.134.150) using below command:</p>
-<pre><code>cd ~/LTRDC-1572
+<p>On Ansible server (198.18.134.150) using your SSH session, change Directory to folder LTRDCN-1572 using below command:</p>
+<pre><code>cd ~/LTRDCN-1572
 </code></pre>
 </li>
 <li>
@@ -343,11 +347,9 @@
 <li>
 <p>Type <code>touch spine.j2</code></p>
 </li>
-<li>
-<p>After entering the command, go back to ATOM,  <strong>right click</strong> on folder <code>LTRDCN-1572</code>, scroll to choose option <code>Remote Sync</code> option and choose <code>Download Folder</code> as shown below: </p>
-<p><img alt="" src="../pic/3-5-1.png" /></p>
-</li>
+<li>After entering the command, go back to ATOM,  <strong>right click</strong> on folder <code>LTRDCN-1572</code>, scroll to choose option <code>Remote Sync</code> option and choose <code>Download Folder</code> as shown below: </li>
 </ol>
+<p><img alt="" src="../pic/3-5-1.png" /></p>
 <p>Now that the file/folder appears properly on ATOM, go ahead and proceed with further steps:</p>
 <ul>
 <li>
