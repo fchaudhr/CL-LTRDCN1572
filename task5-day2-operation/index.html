@@ -675,11 +675,8 @@ Leaf-4#
 
 <p><img alt="" src="../pic/5-4-2.png" /></p>
 <ul>
-<li>Edit playbook file <code>mail.yml</code> for <strong>“vni_provision”</strong> role under <strong>“/root/LTRDCN-1572/roles/vni_provision/tasks”</strong> and enter below data.   Make sure to click <code>File</code> and <code>Save</code> on Atom to push this to Ansible server:</li>
+<li>Edit playbook file <strong>main.yml</strong> for <strong>“vni_provision”</strong> role under <strong>“/root/LTRDCN-1572/roles/vni_provision/tasks”</strong> and enter below data.   Make sure to click <code>File</code> and <code>Save</code> on Atom to push this to Ansible server:</li>
 </ul>
-<hr />
-<p><font style=background-color:yellow>Note: It is recommended to write your playbook and learn from mistakes, but file is also available in the box folder if you prefer to reuse.</font> </p>
-<hr />
 <pre><code class="YAML">---
 # tasks file for vni_provision
        - name: Configure VLAN to VNI
@@ -744,13 +741,16 @@ Leaf-4#
 </code></pre>
 
 <ul>
-<li>
-<p>Run playbook <strong>vni_provision.yml</strong> to add new VNIs on the fabric</p>
+<li>Run playbook <strong>vni_provision.yml</strong> to add new VNIs on the fabric by issuing <code>ansible-playbook vni_provision.yml</code> command as shown below:</li>
+</ul>
 <pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook vni_provision.yml
 </code></pre>
-<p>Below screenshot shows the output of above command:</p>
-<p><img alt="" src="../pic/5-4-4.png" /></p>
-</li>
+
+<pre><code>Below screenshot shows the output of above command:
+
+![](pic/5-4-4.png)
+</code></pre>
+<ul>
 <li>
 <p>Switch to <strong>MTPutty</strong> and connect to <strong>leaf-4</strong> (SSH connection0, verify the change on leaf switches using command <strong>show nve vni</strong>. Notice the new created L2VNI. </p>
 <p><img alt="" src="../pic/5-4-5.png" /></p>
