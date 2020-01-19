@@ -191,7 +191,7 @@
 <p>In this step, we are going to define the scope, variable for playbook and tasks </p>
 <ul>
 <li>In the opened window for ‘vlan_provision.yml’ file, enter the below content.<ul>
-<li><strong>NOTE: YAML is space sensitive. Hence be careful with the spaces in below section. </strong></li>
+<li><strong>NOTE: YAML is space sensitive. Hence be careful with the spaces in below section.  You may copy and paste the full content (start to finish) from below to make sure that spaces are copied properly.</strong></li>
 </ul>
 </li>
 </ul>
@@ -204,17 +204,26 @@
         password: &quot;{{ pwd }}&quot;
         transport: nxapi
         host: &quot;{{ inventory_hostname }}&quot;
+
 </code></pre>
 
-<p>Note:
-*  “<strong>hosts:</strong>” defines the scope of this playbook applies to all switches in group ‘leaf’ and ‘jinja2_leaf’ (within the <strong><em>"hosts"</em></strong> file created in pervious task). 
-    *  <strong>Note</strong> that you can review the IP addresses of the three (2) “leaf” and one (1) “jinja2_leaf” in the “<strong><em>hosts</em></strong>” file (configured in previous steps).  The IP addresses are:
-        *  jinja2_leaf: 198.18.4.104
-        *  leaf: 198.18.4.101
-        *  leaf: 198.18.4.103
-* “<strong>vars</strong>” defines one variable “<strong>nxos_provider</strong>” that will be used in this playbook. 
-* “<strong>nxos_provider</strong>” is variable that includes all value that will be used for connection and autnentication. 
-    * This variable will be referenced in playbook via “<strong>provider</strong>” argument (that will be added in next step #4).    </p>
+<p>Further note:</p>
+<ul>
+<li>“<strong>hosts:</strong>” defines the scope of this playbook applies to all switches in group ‘leaf’ and ‘jinja2_leaf’ (within the <strong><em>"hosts"</em></strong> file created in pervious task). <ul>
+<li><strong>Note</strong> that you can review the IP addresses of the three (2) “leaf” and one (1) “jinja2_leaf” in the “<strong><em>hosts</em></strong>” file (configured in previous steps).  The IP addresses are:<ul>
+<li>jinja2_leaf: 198.18.4.104</li>
+<li>leaf: 198.18.4.101</li>
+<li>leaf: 198.18.4.103</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>“<strong>vars</strong>” defines one variable “<strong>nxos_provider</strong>” that will be used in this playbook. </li>
+<li>“<strong>nxos_provider</strong>” is variable that includes all value that will be used for connection and autnentication. <ul>
+<li>This variable will be referenced in playbook via “<strong>provider</strong>” argument (that will be added in next step #4).    </li>
+</ul>
+</li>
+</ul>
 <hr />
 <h3 id="step-4-vlan-tasks-in-playbook">Step 4: VLAN tasks in playbook</h3>
 <ul>
