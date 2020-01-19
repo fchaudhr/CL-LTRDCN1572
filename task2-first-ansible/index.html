@@ -340,20 +340,29 @@
 </ul>
 <hr />
 <h3 id="step-7-execute-playbook">Step 7: Execute playbook</h3>
-<p>Now, we are going to execute the playbook with the command <code>ansible-playbook vlan_provision.yml</code></p>
+<p>Now, we are going to execute this playbook:</p>
 <ul>
-<li>
-<p>Before excuting the ansible playbook, you may log into switch (leaf1, leaf3 or leaf4) using MTPutty client, and check the existing configuration by executing the below command:
-  <code>show run interface ethernet1/3</code></p>
-</li>
+<li>Before excuting the ansible playbook, you may log into switch (leaf1, leaf3 or leaf4) using MTPutty client, and check the existing configuration by executing the below command:</li>
+</ul>
+<pre><code>show run interface ethernet1/3
+</code></pre>
+
+<ul>
 <li>
 <p>On MTPuttY, log back into (or launch a new ssh) into “Ansible” node</p>
 </li>
 <li>
-<p>Execute command <code>ansible-playbook vlan_provision.yml</code> in the “LTRDCN-1572” directory as shown below:
-        [root@rhel7-tools LTRDCN-1572]# ansible-playbook vlan_provision.yml</p>
-<p><img alt="" src="../pic/2-7-1.png" /></p>
+<p>Execute command <code>ansible-playbook vlan_provision.yml</code> in the “LTRDCN-1572” directory as shown below:</p>
 </li>
+</ul>
+<pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook vlan_provision.yml
+</code></pre>
+
+<pre><code>Below screeenshot shows the execution of above command:
+
+![](pic/2-7-1.png)
+</code></pre>
+<ul>
 <li>
 <p>After we push the configuration, <strong>login</strong> to the <strong>leaf-3</strong> switch, and check if the server facing port has the access vlan configured with the below command:
   <code>show run interface ethernet1/3</code></p>
