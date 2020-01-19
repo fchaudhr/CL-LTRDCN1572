@@ -212,7 +212,7 @@
 <ul>
 <li>
 <p>The contents of the <strong>jinja2_fabric.yml</strong> file should look like</p>
-<p><img alt="" src="../pic/3-2-2.png" /></p>
+<p><img alt="" src="../pic/3-2-2-new.png" /></p>
 </li>
 <li>
 <p><strong>Click</strong> <code>File</code> and <code>Save</code> . This will save the playbook, and also ftp the playbook to Ansible server using pre-configured “<strong>remote-sync</strong>” package</p>
@@ -440,22 +440,24 @@
 </ul>
 <p>To verify the execution of this playbook, you can:</p>
 <ul>
-<li><strong>Login</strong> to <strong>Spine-2 </strong>switch (<strong>on MTputty</strong>) to verify configuration has been pushed. Double click the spine-2 icon in the left pane on MTputty.  Login with credentials admin/C1sco12345</li>
+<li>
+<p><strong>Login</strong> to <strong>Spine-2 </strong>switch (<strong>on MTputty</strong>) to verify configuration has been pushed by double clicking the spine-2 icon in the left pane on MTputty.  If prompted then login with credentials admin/C1sco12345</p>
+</li>
 <li>
 <p>Execute <code>show run bgp</code> command on the switch to confirm the configurations have been provisioned (as shown below):</p>
-<p><img alt="" src="../pic/3-7-2.png" /></p>
+<p><img alt="" src="../pic/3-7-2-new.png" /></p>
 </li>
 </ul>
 <hr />
 <h3 id="step-8-modify-playbook-for-leaf">Step 8: Modify playbook for Leaf</h3>
 <p>In this section, we will use Jina2 template and Ansible to provision the VXLAN Fabric on leaf-4.   We are going to add jinja2_leaf this time to the already created playbook in step 2.</p>
 <ul>
-<li>Switch to “<strong>Atom</strong>”, click on the folder <code>LTRDDCN-1572</code>, edit the existing playbook <code>jinja2_fabric.yml</code> file for a role for leaf (named jinja2_leaf).  Add the below </li>
+<li>Switch to “<strong>Atom</strong>”, click on the folder <code>LTRDDCN-1572</code>, edit the existing playbook <code>jinja2_fabric.yml</code> file for a role for leaf (named jinja2_leaf).  Add the below content at the end of existing file (i.e., add the below content to existing content in this file (do not overwrite existing content):</li>
 </ul>
-<pre><code class="YAML">  - hosts: jinja2_leaf
-    connection: local
-    roles:
-      - jinja2_leaf
+<pre><code class="YAML">- hosts: jinja2_leaf
+  connection: local
+  roles:
+    - jinja2_leaf
 </code></pre>
 
 <ul>
