@@ -153,6 +153,15 @@
     <li class="toctree-l2"><a href="#step-11-run-nxos_fabric-playbook">Step 11: Run nxos_fabric playbook</a></li>
     
 
+    <li class="toctree-l2"><a href="#congratulation-you-have-just-built-vxlan-fabric-using-ansible-jinja2-template-and-ansible-nxos-modules">Congratulation! You have just built VXLAN fabric using ansible + Jinja2 template and ansible + NXOS modules.</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#step-12-verify-end-to-end-ip-connectivity">Step 12: Verify end-to-end IP connectivity</a></li>
+        
+        </ul>
+    
+
     </ul>
 	    </li>
           
@@ -988,19 +997,21 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 <pre><code>show bgp l2vpn evpn summary
 </code></pre>
 
-<p>Below screenshot shows the output of above command from leaf-4 switch.  As expected it shows the spine-1 and spine-2 as neighbors:</p>
+<p>Below screenshot shows the output of above command from leaf-3 switch.  As expected it shows the spine-1 and spine-2 as neighbors:</p>
 <p><img alt="" src="../pic/4-6-2.png" /></p>
 <hr />
 <h3 id="step-11-run-nxos_fabric-playbook">Step 11: Run nxos_fabric playbook</h3>
 <ul>
-<li>Up on this point, you have run the playbook during each step. You could re-run the whole playbook without giving any tags, but no new changes should be maded to the switches. <pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook nxos_fabric.yml
-</code></pre>
-</li>
+<li>Up to this point, you have run the playbook for each step separately (using tags).  You could re-run the whole playbook without giving any tags, but no new changes should be maded to the switches. </li>
 </ul>
+<pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook nxos_fabric.yml
+</code></pre>
+
 <hr />
-<p><strong>Congratulation!</strong> You have just built VXLAN fabric using ansible + Jinja2 template and ansible + NXOS modules. </p>
+<h2 id="congratulation-you-have-just-built-vxlan-fabric-using-ansible-jinja2-template-and-ansible-nxos-modules"><strong>Congratulation! You have just built VXLAN fabric using ansible + Jinja2 template and ansible + NXOS modules.</strong></h2>
+<h3 id="step-12-verify-end-to-end-ip-connectivity">Step 12: Verify end-to-end IP connectivity</h3>
 <ul>
-<li>Let’s verify the VXLAN bridging and VXLAN routing from servers that are pre-configured in following VLANs and IPs </li>
+<li>Now Let’s verify the VXLAN bridging and VXLAN routing from servers that are pre-configured in following VLANs and IPs </li>
 </ul>
 <table>
 <thead>
@@ -1034,10 +1045,10 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 </table>
 <ul>
 <li>
-<p>Switch to MTPuTTY and connect to server-1 with root/C1sco12345</p>
+<p>Switch to <strong>MTPuTTY</strong> and SSJ to <strong>server-1</strong>.  If prompted enter the credentials of root/C1sco12345</p>
 </li>
 <li>
-<p>Ping default gateway from server-1 </p>
+<p><strong>Ping</strong> default gateway from server-1 by issuing below commands:</p>
 </li>
 </ul>
 <pre><code>[root@server-1 ~]# ping 172.21.140.1
@@ -1047,7 +1058,7 @@ PING 172.21.140.1 (172.21.140.1) 56(84) bytes of data.
 </code></pre>
 
 <ul>
-<li>Ping server 3 and server 4 from server-1 (in same VLAN and inter-VLAN respectively):</li>
+<li><strong>Ping</strong> server 3 and server 4 from server-1 (in same VLAN and inter-VLAN respectively):</li>
 </ul>
 <pre><code>[[root@server-1 ~]# ping 172.21.140.11
 PING 172.21.140.11 (172.21.140.11) 56(84) bytes of data.
