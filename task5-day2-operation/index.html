@@ -260,10 +260,11 @@
 </li>
 <li>
 <p>On the Ansible node (via MTPutty), run <strong>verify_fabric.yml</strong> playbook and verify the output for <strong>underlay</strong> by executing below command (using respective tag): </p>
-<pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook verify_fabric.yml --tags "underlay"
-</code></pre>
 </li>
 </ul>
+<pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook verify_fabric.yml --tags &quot;underlay&quot;
+</code></pre>
+
 <hr />
 <p><font style=background-color:yellow>The output shows ospf, bgp and pim neighbors for all leaf switches</font></p>
 <hr />
@@ -556,19 +557,28 @@ ok: [198.18.4.101] =&gt; {
 <p><strong>Click</strong> <code>File</code> and <code>Save</code> . This will save the playbook, and also ftp the playbook to Ansible server using pre-configured “<strong>remote-sync</strong>” package. </p>
 </li>
 <li>
-<p><strong>Before</strong> you run this playbook, SSH into leaf-4 to make some configuration change as shown below.</p>
+<p><strong>Before</strong> you run this playbook, <strong>SSH</strong> into <strong>leaf-4</strong> to make some configuration changes by issuing below commands:</p>
 </li>
 </ul>
+<pre><code>config t
+no router bgp 65000
+copy run start
+end
+</code></pre>
+
+<pre><code>Here is a log of execution of above command:
+</code></pre>
 <pre><code>Leaf-4# conf t
 Enter configuration commands, one per line. End with CNTL/Z.
 Leaf-4(config)# no router bgp 65000
 Leaf-4(config)# copy run start
 [########################################] 100%
 Leaf-4(config)# end
+Leaf-4#
 </code></pre>
 
 <ul>
-<li>On the Ansible server (via MTputty SSH session), run the playbook for configuration compliance check by executing below command:</li>
+<li>On the Ansible server (via MTputty SSH session), run the playbook for configuration compliance check by executing <code>ansible-playbook --diff verify_config.yml</code> as shown below below:</li>
 </ul>
 <pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook --diff verify_config.yml
 </code></pre>
@@ -582,10 +592,13 @@ Leaf-4(config)# end
 <p><img alt="" src="../pic/5-3-1.png" /></p>
 </li>
 <li>
-<p>Bring leaf-4 back to the baseline config by executing below command:</p>
+<p>Bring leaf-4 back to the baseline config by executing <code>ansible-playbook jinja2_fabric.yml --limit=198.18.4.104</code> as shown below:</p>
+</li>
+</ul>
 <pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook jinja2_fabric.yml --limit=198.18.4.104
 </code></pre>
-</li>
+
+<ul>
 <li>
 <p>Below screenshot shows the output of above command.  You can also log into leaf-4 and verify that bgp configurations are back:</p>
 <p><img alt="" src="../pic/5-3-2.png" /></p>
