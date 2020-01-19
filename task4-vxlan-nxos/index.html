@@ -81,7 +81,7 @@
     <li class="toctree-l2"><a href="#step-1-create-new-playbook">Step 1: Create new playbook</a></li>
     
 
-    <li class="toctree-l2"><a href="#step-2-create-new-roles-and-vars">Step 2: Create new roles and vars</a></li>
+    <li class="toctree-l2"><a href="#step-2-create-new-roles-for-spine-leaf">Step 2: Create new roles for Spine &amp; Leaf</a></li>
     
 
     <li class="toctree-l2"><a href="#step-3-build-playbook-for-spine-role-tasks">Step 3: Build playbook for Spine role - tasks:</a></li>
@@ -244,15 +244,29 @@
 <p>Switch to “Atom”, <strong>right click</strong> on the folder 'LTRDDCN-1572' and create a new playbook named <code>nxos_fabric.yml</code>. Enter this file name and hit enter</p>
 </li>
 <li>
-<p>In the <code>nxos_fabric.yml</code> enter the content as shown in below screenshot:</p>
-<p><img alt="" src="../pic/4-1-1.png" /></p>
-</li>
-<li>
-<p><strong>Click</strong> <code>File</code> and <code>Save</code> . This will save the playbook, and also ftp the playbook to Ansible server using pre-configured “<strong>remote-sync</strong>” package. </p>
+<p>In the <code>nxos_fabric.yml</code> enter the content as shown below:</p>
 </li>
 </ul>
+<pre><code class="YAML">---
+
+- hosts: spine
+  connection: local
+  roles:
+    - spine
+
+- hosts: leaf
+  connection: local
+  roles:
+    - leaf
+</code></pre>
+
+<p>Below screenshot shows the actual content:
+<img alt="" src="../pic/4-1-1.png" /></p>
+<ul>
+<li><strong>Click</strong> <code>File</code> and <code>Save</code> . This will save the playbook, and also ftp the playbook to Ansible server using pre-configured “<strong>remote-sync</strong>” package. </li>
+</ul>
 <hr />
-<h3 id="step-2-create-new-roles-and-vars">Step 2: Create new roles and vars</h3>
+<h3 id="step-2-create-new-roles-for-spine-leaf">Step 2: Create new roles for Spine &amp; Leaf</h3>
 <ul>
 <li>
 <p>On the MTputty, go back to Ansible Server node (198.18.134.150), switch to ‘<strong>roles</strong>’ directory; <strong>create</strong> ‘spine’ and ‘leaf’ roles using ansible-galaxy as per below commands: </p>
@@ -460,13 +474,14 @@
 </li>
 <li>
 <p>After the configuration push is successful, <strong>login</strong> (on MTputty SSH session) to <strong>leaf-1, leaf-3 or leaf-4</strong> or <strong>spine-1</strong> switch to verify configuration has been pushed by running below command and BGP neighbours are operational:</p>
-<pre><code>show ip bgp summary
-</code></pre>
-<p>The output of above command is shown below:</p>
-<p><img alt="" src="../pic/4-3-3.png" />
-<img alt="" src="../pic/4-3-4.png" /></p>
 </li>
 </ul>
+<pre><code>show ip bgp summary
+</code></pre>
+
+<p>The output of above command providing the BGP neighbours info on Spine-1 and Leaf-3 is shown below:</p>
+<p><img alt="" src="../pic/4-3-3.png" /></p>
+<p><img alt="" src="../pic/4-3-4.png" /></p>
 <hr />
 <h3 id="step-8-configure-multicast-using-ansible-nxos">Step 8: Configure Multicast using Ansible NXOS</h3>
 <p>In this section, we will be configuring underlay multicast to support BUM traffic in the VXLAN fabric. The NXOS modules we will be using in this section are 
