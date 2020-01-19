@@ -167,8 +167,8 @@
           <div role="main">
             <div class="section">
               
-                <p>In this task, we are going to install Jinja2. It is one of the python template engines.  In this section, we use Jinja2 to create template for spine and leaf and configure VXLAN fabric using this Jinja2 templates. </p>
-<p><img alt="" src="../pic/3-0-1.png" /></p>
+                <p>In this task, we are going to install Jinja2 - that provides templating option.  In this section, we use Jinja2 to create template for spine and leaf and configure VXLAN fabric using this Jinja2 templates. </p>
+<p><img alt="" src="../pic/3-0-1-new.png" /></p>
 <p>Jinja2 template looks just like the NXOS configurations. We abstract the variables out of the configuration and use simple for loop to feed variables into the template. </p>
 <hr />
 <h3 id="step-1-install-jinja2">Step 1: Install jinja2</h3>
@@ -185,9 +185,15 @@ Requirement already satisfied (use --upgrade to upgrade): MarkupSafe in /usr/lib
 <p>In this section, we will use Jina2 template and Ansible to provision the VXLAN Fabric. </p>
 <ul>
 <li>
-<p>Switch to “Atom”, <strong>right click</strong> on the folder 'LTRDDCN-1572' and create a new playbook named <code>jinja2_fabric.yml</code>. Enter this file name and hit enter</p>
+<p>Switch to “Atom”, <strong>right click</strong> on the folder <code>LTRDCN-1572</code> and Click <code>New File</code> to create a new playbook named <code>jinja2_fabric.yml</code>. </p>
 <p><img alt="" src="../pic/3-2-1.png" /></p>
 </li>
+<li>
+<p>Name the new file <code>jinja2_fabric.yml</code> and hit enter. It will create this new file:</p>
+</li>
+</ul>
+<p><img alt="" src="../pic/3-2-1a.png" /></p>
+<ul>
 <li>
 <p>Also, on the lower bar of the ATOM, verify that  file grammar of <strong>YAML</strong> is selected instead of default "<strong>Plain Text</strong>".  If <strong>YAML</strong> is not selected, then you should <strong>choose</strong> it from the listed options.</p>
 </li>
@@ -212,14 +218,16 @@ Requirement already satisfied (use --upgrade to upgrade): MarkupSafe in /usr/lib
 <p><strong>Click</strong> <code>File</code> and <code>Save</code> . This will save the playbook, and also ftp the playbook to Ansible server using pre-configured “<strong>remote-sync</strong>” package. </p>
 </li>
 <li>
-<p>On the MTputty, go back to the ssh session to Ansible Server node (198.18.134.150). <strong>Verify</strong> that the below 2 groups exists in the inventory filename "<strong>hosts</strong>" under the folder LTRDCN-1572</p>
-<pre><code>[jinja2_spine]
-198.18.4.202 
-[jinja2_leaf]
-198.18.4.104
-</code></pre>
+<p>On the MTputty, go back to the <strong>ssh</strong> session to Ansible Server node (198.18.134.150). </p>
 </li>
+<li><strong>Verify</strong> that the below 2 groups exists of <em>jinja2_spine</em> and <em>jinja2_leaf</em> in the inventory filename "<strong>hosts</strong>" under the LTRDCN-1572 directory by issuing below command:</li>
 </ul>
+<pre><code>cd /root/LTRDCN-1572
+more hosts
+</code></pre>
+
+<p>Below screenshot confirms the ouptut and appropriate IP addresses of above command:</p>
+<p><img alt="" src="../pic/3-2-3.png" /></p>
 <hr />
 <h3 id="step-3-create-new-roles-and-vars">Step 3: Create new roles and vars</h3>
 <p>In this section, we will create two new roles for provisioning Fabric with Jina2 template.</p>
