@@ -271,15 +271,14 @@
 *  Before executing the playbook, we will verify the leaf switch if it has any vlan configuration present on it.
 *  <strong>Login</strong> to leaf-3 switch using the Mputty client, or any leaf switch in previous playbook (remember <strong>hosts:</strong> variable in the file), and execute <code>show vlan brief</code> command. 
     *  This command will show the vlans that currently exist on the leaf switch.  As you note from below screenshot, only the default VLAN (vlan number 1) is configured:</p>
-<pre><code>![](pic/2-5-1.png)
-</code></pre>
+<p><img alt="" src="../pic/2-5-1.png" /></p>
 <ul>
 <li>Now, go to mputty, login or launch a new ssh into Ansible node (198.18.134.150) </li>
 <li>
 <p>Use command <code>ansible-playbook vlan_provision.yml --tags "add vlans"</code> under folder "LTRDCN-1572" as shown below:</p>
 <pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook vlan_provision.yml --tags "add vlans"
 </code></pre>
-<p><img alt="" src="../pic/2-5-1.png" /></p>
+<p><img alt="" src="../pic/2-5-2.png" /></p>
 <p><strong>Note: If the playbook fails first time, re-run the playbook again. Make sure to save all the changes in the playbook first before executing the playbook in Ansible.</strong></p>
 </li>
 <li>
