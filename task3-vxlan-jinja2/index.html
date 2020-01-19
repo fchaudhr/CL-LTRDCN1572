@@ -373,15 +373,15 @@
     <img alt="" src="../pic/3-5-4.png" /></p>
 </li>
 <li>
-<p>After opening “<strong>spine.j2</strong>” file from ATOM, go to <code>File</code> –-&gt; <code>Save</code> to push template file to Ansible node:</p>
+<p>After opening “<strong>spine.j2</strong>” file from ATOM (as shown in below screenshot confirming the updated content), go to <code>File</code> –-&gt; <code>Save</code> to push template file to Ansible node:</p>
 <p><img alt="" src="../pic/3-5-5.png" /></p>
 </li>
 <li>
 <p>You can verify that updated file content is on Ansible server (198.18.134.150) using your SSH session by issuing below commands:</p>
 </li>
 </ul>
-<pre><code>cd /root/LTRDCN-1572/roles/jinja2_spine/templates
-more spine.j2
+<pre><code>[root@rhel7-tools templates]# cd /root/LTRDCN-1572/roles/jinja2_spine/templates
+[root@rhel7-tools templates]# more spine.j2
 </code></pre>
 
 <p>Partial output of above command is shown in below screenshot confirming :
