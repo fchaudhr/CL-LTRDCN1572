@@ -637,17 +637,23 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 <li><strong>Click</strong> <code>File</code> and <code>Save</code> . This will save the playbook, and also ftp the playbook to Ansible server using pre-configured “<strong>remote-sync</strong>” package. </li>
 </ul>
 <h5 id="run-the-playbook-and-verify-configuration-changes">Run the playbook and verify configuration changes</h5>
-<pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook nxos_fabric.yml --tags "multicast"
-</code></pre>
+<ul>
+<li>
+<p>Execute the playbook by running <code>ansible-playbook nxos_fabric.yml --tags "multicast"</code> command on Ansible server as shown below :</p>
+<p>[root@rhel7-tools LTRDCN-1572]# ansible-playbook nxos_fabric.yml --tags "multicast"</p>
+</li>
+</ul>
 <p>Below screenshots shows the output of above command:</p>
 <p><img alt="" src="../pic/4-4-1.png" />
 <img alt="" src="../pic/4-4-2.png" /></p>
-<hr />
-<p><font style=background-color:yellow>Note: login to any leaf (leaf1, leaf3, leaf4) or spine-1 switch to verify multicast configuration and PIM neighbors by executing command:
- <code>show ip pim nei</code></font></p>
-<hr />
 <ul>
-<li>Below screenshot shows the output of above command <code>show ip pim nei</code> from Spine-1</li>
+<li>login to any leaf (leaf1, leaf3, leaf4) or Spine-1 switch to verify multicast configuration and PIM neighbors by executing command:</li>
+</ul>
+<pre><code>show ip pim nei
+</code></pre>
+
+<ul>
+<li>Below screenshot shows the output of above command <code>show ip pim nei</code> from Spine-1:</li>
 </ul>
 <p><img alt="" src="../pic/4-4-3.png" /></p>
 <hr />
