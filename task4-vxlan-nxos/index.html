@@ -153,13 +153,7 @@
     <li class="toctree-l2"><a href="#step-11-run-nxos_fabric-playbook">Step 11: Run nxos_fabric playbook</a></li>
     
 
-    <li class="toctree-l2"><a href="#congratulation-you-have-just-built-vxlan-fabric-using-ansible-jinja2-template-and-ansible-nxos-modules">Congratulation! You have just built VXLAN fabric using ansible + Jinja2 template and ansible + NXOS modules.</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#step-12-verify-end-to-end-ip-connectivity">Step 12: Verify end-to-end IP connectivity</a></li>
-        
-        </ul>
+    <li class="toctree-l2"><a href="#step-12-verify-end-to-end-ip-connectivity">Step 12: Verify end-to-end IP connectivity</a></li>
     
 
     </ul>
@@ -1008,11 +1002,8 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 </code></pre>
 
 <hr />
-<h2 id="congratulation-you-have-just-built-vxlan-fabric-using-ansible-jinja2-template-and-ansible-nxos-modules"><strong>Congratulation! You have just built VXLAN fabric using ansible + Jinja2 template and ansible + NXOS modules.</strong></h2>
 <h3 id="step-12-verify-end-to-end-ip-connectivity">Step 12: Verify end-to-end IP connectivity</h3>
-<ul>
-<li>Now Let’s verify the VXLAN bridging and VXLAN routing from servers that are pre-configured in following VLANs and IPs </li>
-</ul>
+<p>Now Let’s verify the VXLAN bridging and VXLAN routing from servers that are pre-configured in following VLANs and IPs </p>
 <table>
 <thead>
 <tr>
@@ -1045,10 +1036,10 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 </table>
 <ul>
 <li>
-<p>Switch to <strong>MTPuTTY</strong> and SSJ to <strong>server-1</strong>.  If prompted enter the credentials of root/C1sco12345</p>
+<p>Switch to <strong>MTPuTTY</strong> and SSH to <strong>server-1</strong>.  If prompted enter the credentials of root/C1sco12345</p>
 </li>
 <li>
-<p><strong>Ping</strong> default gateway from server-1 by issuing below commands:</p>
+<p><strong>Ping</strong> default gateway from server-1 by issuing command <code>ping 172.21.140.1</code> as shown below:</p>
 </li>
 </ul>
 <pre><code>[root@server-1 ~]# ping 172.21.140.1
@@ -1058,7 +1049,7 @@ PING 172.21.140.1 (172.21.140.1) 56(84) bytes of data.
 </code></pre>
 
 <ul>
-<li><strong>Ping</strong> server 3 and server 4 from server-1 (in same VLAN and inter-VLAN respectively):</li>
+<li>Next, <strong>Ping</strong> server 3 and server 4 from server-1 (in same VLAN and inter-VLAN respectively) by using <code>ping 172.21.140.11</code> and <code>ping 172.21.141.11</code> commands as shown below:</li>
 </ul>
 <pre><code>[[root@server-1 ~]# ping 172.21.140.11
 PING 172.21.140.11 (172.21.140.11) 56(84) bytes of data.
@@ -1075,6 +1066,9 @@ PING 172.21.141.11 (172.21.141.11) 56(84) bytes of data.
 64 bytes from 172.21.141.11: icmp_seq=995 ttl=62 time=16.1 ms
 64 bytes from 172.21.141.11: icmp_seq=996 ttl=62 time=18.0 ms
 </code></pre>
+
+<hr />
+<p><strong>Congratulation! You have successfuly built VXLAN fabric using ansible + Jinja2 template and ansible + NXOS modules.</strong></p>
               
             </div>
           </div>
