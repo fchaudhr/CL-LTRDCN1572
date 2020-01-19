@@ -638,24 +638,25 @@ nxos_pim_interface  Manage PIM interface configuration</p>
 </ul>
 <h5 id="run-the-playbook-and-verify-configuration-changes">Run the playbook and verify configuration changes</h5>
 <ul>
-<li>
-<p>Execute the playbook by running <code>ansible-playbook nxos_fabric.yml --tags "multicast"</code> command on Ansible server as shown below :</p>
-<p>[root@rhel7-tools LTRDCN-1572]# ansible-playbook nxos_fabric.yml --tags "multicast"</p>
-</li>
+<li>Execute the playbook by running <code>ansible-playbook nxos_fabric.yml --tags "multicast"</code> command on Ansible server as shown below :</li>
 </ul>
-<p>Below screenshots shows the output of above command:</p>
-<p><img alt="" src="../pic/4-4-1.png" />
+<pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook nxos_fabric.yml --tags &quot;multicast&quot;
+</code></pre>
+
+<p>Below screenshots shows the output of above command:
+<img alt="" src="../pic/4-4-1.png" />
 <img alt="" src="../pic/4-4-2.png" /></p>
 <ul>
-<li>login to any leaf (leaf1, leaf3, leaf4) or Spine-1 switch to verify multicast configuration and PIM neighbors by executing command:</li>
+<li>login to <strong>any leaf</strong> (leaf1, leaf3, leaf4) or <strong>Spine-1</strong> switch (via SSH using MTPutty) to verify multicast configuration and PIM neighbors by executing command:</li>
 </ul>
-<pre><code>show ip pim nei
+<pre><code>show ip pim neighbor
 </code></pre>
 
 <ul>
-<li>Below screenshot shows the output of above command <code>show ip pim nei</code> from Spine-1:</li>
+<li>Below screenshot shows the output of above command (<code>show ip pim neighbor</code>) from Spine-1:</li>
 </ul>
 <p><img alt="" src="../pic/4-4-3.png" /></p>
+<p>This confirms Multicast has been enabled using Ansible modules</p>
 <hr />
 <h3 id="step-9-configure-vxlan-using-ansible">Step 9: Configure VXLAN using Ansible</h3>
 <p>In this section, we will be configuring VXLAN on leaf and spine switches. The NXOS modules we will be using in this section are </p>
