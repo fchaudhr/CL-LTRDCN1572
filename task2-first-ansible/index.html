@@ -294,7 +294,10 @@
 <p>We have just tested our first playbook with basic configuration (i.e, by adding 2 VLANS), now we are going to add more tasks in our existing playbook “<strong>vlan_provision.yml</strong>” in this step:</p>
 <ul>
 <li>we will add new plays in the playbook to assign VLANs to server facing port. This time, we will configure VLAN towards the server facing ports</li>
-<li>Go back to <strong>ATOM</strong> and <strong>add</strong> the following plays to the <strong>existing playbook</strong></li>
+<li>Go back to <strong>ATOM</strong> and <strong>add</strong> the following plays to the <strong>existing playbook</strong><ul>
+<li><em>NOTE: YAML is space sensitive. Hence be careful with the spaces in below section.  You may copy and paste the full content (start to finish) from below to make sure that spaces are copied properly.</em></li>
+</ul>
+</li>
 </ul>
 <pre><code class="YAML">      - name: configure server facing port to L2
         nxos_interface:
