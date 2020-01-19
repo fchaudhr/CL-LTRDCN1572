@@ -592,7 +592,7 @@ Leaf-4#
 <p><img alt="" src="../pic/5-3-1.png" /></p>
 </li>
 <li>
-<p>Bring leaf-4 back to the baseline config by executing <code>ansible-playbook jinja2_fabric.yml --limit=198.18.4.104</code> as shown below:</p>
+<p>Bring leaf-4 back to the baseline config by executing <code>ansible-playbook jinja2_fabric.yml --limit=198.18.4.104</code> command as shown below:</p>
 </li>
 </ul>
 <pre><code>[root@rhel7-tools LTRDCN-1572]# ansible-playbook jinja2_fabric.yml --limit=198.18.4.104
@@ -638,12 +638,13 @@ Leaf-4#
 </tbody>
 </table>
 <ul>
-<li>
-<p>First we will creat a new role, and name it <strong>“vni_provision”</strong> under folder roles using <strong>ansible-galaxy</strong> using below commands on the Ansible node (using MTputty via SSH connection): </p>
+<li>First we will creat a new role, and name it <strong>“vni_provision”</strong> under folder roles using <strong>ansible-galaxy</strong> using below commands on the Ansible node (using MTputty via SSH connection): </li>
+</ul>
 <pre><code>[root@rhel7-tools LTRDCN-1572]# cd roles/
 [root@rhel7-tools roles]# ansible-galaxy init vni_provision
 </code></pre>
-</li>
+
+<ul>
 <li>
 <p>Verify vni_provision was created successfully</p>
 </li>
