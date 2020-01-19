@@ -357,7 +357,7 @@
 <p><a href="https://cisco.app.box.com/v/LTRDCN1572">https://cisco.app.box.com/v/LTRDCN1572</a></p>
 </li>
 <li>
-<p>The file would be under LTRDCN-1572/roles/jinja2_spine/templates/spine.j2 (link below) as shown in below screenshot:</p>
+<p>The file would be under <code>LTRDCN-1572/roles/jinja2_spine/templates/spine.j2</code> (link below) as shown in below screenshot:</p>
 <p><a href="https://cisco.app.box.com/v/LTRDCN1572/folder/44981931157">https://cisco.app.box.com/v/LTRDCN1572/folder/44981931157
 </a></p>
 <p><img alt="" src="../pic/3-5-2.png" /></p>
@@ -369,14 +369,23 @@
 <p><img alt="" src="../pic/3-5-3.png" /></p>
 </li>
 <li>
-<p>On ATOM, go to <code>File</code> then <code>Open File…</code> and browse to this <code>spine.j2</code> file that was just saved in <code>X:\LTRDCN-1572\roles\jinja2_spine\templates</code> as shown below:
+<p>After moving/copying this file to above folder location, open this file on ATOM.  You do this by going to <code>File</code> then <code>Open File…</code> on ATOM, and browse to this <code>spine.j2</code> file that was just saved in <code>X:\LTRDCN-1572\roles\jinja2_spine\templates</code> as shown below:
     <img alt="" src="../pic/3-5-4.png" /></p>
 </li>
 <li>
 <p>After opening “<strong>spine.j2</strong>” file from ATOM, go to <code>File</code> –-&gt; <code>Save</code> to push template file to Ansible node:</p>
 <p><img alt="" src="../pic/3-5-5.png" /></p>
 </li>
+<li>
+<p>You can verify that updated file content is on Ansible server (198.18.134.150) using your SSH session by issuing below commands:</p>
+</li>
 </ul>
+<pre><code>cd /root/LTRDCN-1572/roles/jinja2_spine/templates
+more spine.j2
+</code></pre>
+
+<p>Partial output of above command is shown in below screenshot confirming :
+  <img alt="" src="../pic/3-5-6.png" /></p>
 <hr />
 <h3 id="step-6-create-playbook-for-jinja2_spine-role">Step 6: Create playbook for jinja2_spine role</h3>
 <p>The playbook for jinja2_spine roles has two tasks. First task uses ansible <strong>template</strong> module to generate configuration file based on jinja2 template created in last step. The configuration file is saved in “<strong>file</strong>” folder. Second task is push the configuration to switch. </p>
